@@ -2,16 +2,17 @@ import * as React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { LandingLayout, Layout } from "./components";
-import { About, Home, Login, Services } from "./pages";
+import { About, Home, Login, Register, Services } from "./pages";
 
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Login />} />
           <Route path="login" element={<Login />} />
+          <Route path="register" element={<Register />} />
           <Route path="/*" element={<LandingLayout />}>
+            <Route index element={<Home />} />
             <Route path="home" element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="services" element={<Services />} />

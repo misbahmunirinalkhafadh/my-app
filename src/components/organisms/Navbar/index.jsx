@@ -8,8 +8,10 @@ import {
   NavDropdown,
   Offcanvas,
 } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 export default function Navigation() {
+  const navigate = useNavigate();
   return (
     <>
       <Navbar key="md" bg="dark" variant="dark" expand="md">
@@ -33,16 +35,27 @@ export default function Navigation() {
                 <NavDropdown
                   title="Services"
                   id="offcanvasNavbarDropdown-expand-md">
-                  <NavDropdown.Item href="/services">Service 1</NavDropdown.Item>
-                  <NavDropdown.Item href="/services">Service 2</NavDropdown.Item>
-                  <NavDropdown.Item href="/services">Service 3</NavDropdown.Item>
+                  <NavDropdown.Item href="/services">
+                    Service 1
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="/services">
+                    Service 2
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="/services">
+                    Service 3
+                  </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
               <Form className="d-flex">
-                <Button variant="outline-primary" className="me-2">
+                <Button
+                  variant="outline-primary"
+                  className="me-2"
+                  onClick={() => navigate("/login")}>
                   Login
                 </Button>
-                <Button variant="primary">Register</Button>
+                <Button variant="primary" onClick={() => navigate("/register")}>
+                  Register
+                </Button>
               </Form>
             </Offcanvas.Body>
           </Navbar.Offcanvas>
