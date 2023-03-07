@@ -6,12 +6,14 @@ import {
   BsCollection,
   BsToggles2,
 } from "react-icons/bs";
+import { Link, useNavigate } from "react-router-dom";
 
-import { ImgPet } from "../../assets";
+// import { ImgPet } from "../../assets";
 import { Header } from "../../components";
 import { articles } from "./data";
 
 export default function Home() {
+  const navigate = useNavigate();
   return (
     <>
       {/* Header */}
@@ -102,48 +104,18 @@ export default function Home() {
                   <Card.Img variant="top" src={item.image} />
                   <Card.Body>
                     <Card.Title>{item.title}</Card.Title>
-                    <Card.Text>
-                      {item.content}
-                    </Card.Text>
+                    <Card.Text>{item.content}</Card.Text>
                     <div className="d-grid">
-                      <Button variant="outline-primary">Go somewhere</Button>
+                      <Button variant="outline-primary">
+                        <Link state={item} to={`/articles/detail/${item.id}`}>
+                          Go somewhere
+                        </Link>
+                      </Button>
                     </div>
                   </Card.Body>
                 </Card>
               </Col>
             ))}
-
-            {/* <Col lg={6} xl={4}>
-              <Card>
-                <Card.Img variant="top" src={ImgPet} />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                  <div className="d-grid">
-                    <Button variant="primary">Go somewhere</Button>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col>
-
-            <Col lg={6} xl={4}>
-              <Card>
-                <Card.Img variant="top" src={ImgPet} />
-                <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </Card.Text>
-                  <div className="d-grid">
-                    <Button variant="outline-primary">Go somewhere</Button>
-                  </div>
-                </Card.Body>
-              </Card>
-            </Col> */}
           </Row>
         </Container>
       </section>
