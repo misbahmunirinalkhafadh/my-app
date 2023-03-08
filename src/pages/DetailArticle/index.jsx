@@ -3,14 +3,14 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export default function DetailArticle() {
-  const { id } = useParams();
+  const { detailId } = useParams();
 
   const [data, setData] = useState({});
 
   async function getPets() {
     try {
       const response = await axios.get(
-        "https://pets-v2.dev-apis.com/pets?id=" + id
+        "https://pets-v2.dev-apis.com/pets?id=" + detailId
       );
       setData(response.data.pets[0]);
       console.log(response.data.pets[0]);

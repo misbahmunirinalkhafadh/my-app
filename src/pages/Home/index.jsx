@@ -11,7 +11,7 @@ import {
 import { Header } from "../../components";
 
 export default function Home() {
-const [data, setData] = useState({})
+  const [data, setData] = useState({});
 
   async function getPets() {
     try {
@@ -122,7 +122,9 @@ const [data, setData] = useState({})
                     <Card.Img variant="top" src={item.images[0]} />
                     <Card.Body>
                       <Card.Title>{item.name}</Card.Title>
-                      <Card.Text>{limit(item.description, 220)}</Card.Text>
+                      <Card.Text style={{ WebkitLineClamp: 3, lineClamp: 3, textOverflow:'ellipsis' }}>
+                        {limit(item.description, 220)}
+                      </Card.Text>
                       <div className="d-grid">
                         <Button
                           href={`/articles/detail/${item.id}`}
