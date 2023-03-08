@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import {
   BsArrowRight,
@@ -6,14 +7,30 @@ import {
   BsCollection,
   BsToggles2,
 } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
 
-// import { ImgPet } from "../../assets";
 import { Header } from "../../components";
-import { articles } from "./data";
 
 export default function Home() {
-  const navigate = useNavigate();
+const [data, setData] = useState({})
+
+  async function getPets() {
+    try {
+      const response = await axios.get("https://pets-v2.dev-apis.com/pets");
+      setData(response.data);
+      console.log(response.data.pets);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  function limit(string = "", limit = 0) {
+    return string.substring(0, limit);
+  }
+
+  useEffect(() => {
+    getPets();
+  }, []);
+
   return (
     <>
       {/* Header */}
@@ -98,24 +115,25 @@ export default function Home() {
             <p className="lead mb-0">Lorem ipsum dolor sit amet</p>
           </div>
           <Row className="gx-5 justify-content-center">
-            {articles.map((item, i) => (
-              <Col key={i} lg={6} xl={4}>
-                <Card>
-                  <Card.Img variant="top" src={item.image} />
-                  <Card.Body>
-                    <Card.Title>{item.title}</Card.Title>
-                    <Card.Text>{item.content}</Card.Text>
-                    <div className="d-grid">
-                      <Button variant="outline-primary">
-                        <Link state={item} to={`/articles/detail/${item.id}`}>
+            {data !== undefined &&
+              data?.pets?.slice(0, 3).map((item, i) => (
+                <Col key={i} lg={6} xl={4}>
+                  <Card>
+                    <Card.Img variant="top" src={item.images[0]} />
+                    <Card.Body>
+                      <Card.Title>{item.name}</Card.Title>
+                      <Card.Text>{limit(item.description, 220)}</Card.Text>
+                      <div className="d-grid">
+                        <Button
+                          href={`/articles/detail/${item.id}`}
+                          variant="outline-primary">
                           Go somewhere
-                        </Link>
-                      </Button>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
+                        </Button>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))}
           </Row>
         </Container>
       </section>

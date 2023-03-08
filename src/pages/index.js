@@ -3,6 +3,6 @@ import Register from './Register';
 import Home from './Home';
 import About from './About';
 import Services from './Services';
-import DetailArtice from './DetailArtice';
+import DetailArticle from './DetailArticle';
 
-export { Login, Register, Home, About, Services, DetailArtice }
+export { Login, Register, Home, About, Services, DetailArticle }

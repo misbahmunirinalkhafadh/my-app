@@ -2,7 +2,7 @@ import * as React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { LandingLayout, Layout } from "./components";
-import { About, DetailArtice, Home, Login, Register, Services } from "./pages";
+import { About, DetailArticle, Home, Login, Register, Services } from "./pages";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="services" element={<Services />} />
             <Route path="articles">
-              <Route path="detail/:id" element={<DetailArtice />} />
+              <Route path="detail/:id" element={<DetailArticle />} />
             </Route>
           </Route>
         </Route>
